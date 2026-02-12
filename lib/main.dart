@@ -1,4 +1,4 @@
-import 'package:actiday/intermediary_class.dart';
+import 'package:actiday/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
       ),
-      home: IntermediaryClass(),
+      home: Splash(),
     );
   }
 }

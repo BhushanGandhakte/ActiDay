@@ -11,7 +11,9 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: AppBar(
+        
+      ),
     );
   }
 }
