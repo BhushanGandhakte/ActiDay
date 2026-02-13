@@ -23,6 +23,7 @@ class Welcome {
     topClass: json["top_class"] == null ? [] : List<TopClass>.from(json["top_class"]!.map((x) => TopClass.fromJson(x))),
   );
 
+
 }
 
 class Banner1 {

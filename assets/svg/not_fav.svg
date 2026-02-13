@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fec34d"/>
+      <stop offset="0.263" stop-color="#f88c83"/>
+      <stop offset="1" stop-color="#f048c6"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_103593" data-name="Group 103593" transform="translate(-334.5 -155.5)">
+    <path id="Ellipse_2223" data-name="Ellipse 2223" d="M12,0A12,12,0,1,1,0,12,12,12,0,0,1,12,0Z" transform="translate(335 156)" fill="none" stroke="#131414" stroke-width="1" opacity="0.73"/>
+    <g id="Vector" transform="translate(341.072 162.725)">
+      <path id="Path_182012" data-name="Path 182012" d="M-78.4-758.263a3.287,3.287,0,0,1,2.632,1.322,3.288,3.288,0,0,1,2.632-1.322,3.3,3.3,0,0,1,3.3,3.313,6.334,6.334,0,0,1-.308,1.962,8.919,8.919,0,0,1-5.252,5.222,1.279,1.279,0,0,1-.735,0,8.924,8.924,0,0,1-5.252-5.222,6.335,6.335,0,0,1-.308-1.962A3.3,3.3,0,0,1-78.4-758.263Z" transform="translate(81.7 758.263)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

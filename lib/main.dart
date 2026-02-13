@@ -1,4 +1,5 @@
 import 'package:actiday/ui/splash/splash.dart';
+import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +15,13 @@ class MyApp extends StatelessWidget {
       title: 'Actiday',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: AppColors.clrfafafa,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.clrfafafa,
         ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColors.clrfafafa,
+        )
       ),
       home: Splash(),
     );

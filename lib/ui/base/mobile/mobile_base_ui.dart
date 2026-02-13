@@ -1,4 +1,5 @@
 import 'package:actiday/framework/controller/base/mobile/mobile_base_control.dart';
+import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MobileBaseUi extends StatefulWidget {
@@ -17,9 +18,10 @@ class _MobileBaseClassState extends State<MobileBaseUi> {
     return Scaffold(
       body: MobileBaseControl.bottomMenuData[currentInd].screenName,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.clrfafafa,
         items: MobileBaseControl.bottomMenuData.map((data) {
           return BottomNavigationBarItem(
+            backgroundColor: AppColors.clrfafafa,
             icon: data.icon ?? Icon(Icons.disabled_by_default),
             label: data.iconName,
           );

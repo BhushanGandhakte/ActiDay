@@ -6,6 +6,7 @@ class AppAssets {
   static const String homeLogo = 'assets/svg/home.svg';
   static const String carousel1 = 'assets/images/carousel1.png';
   static const String webProfile = 'assets/images/web_profile.png';
-
+  static const String isFav = 'assets/svg/is_fav.svg';
+  static const String notFav = 'assets/svg/not_fav.svg';
 
 }

@@ -1,4 +1,7 @@
+import 'package:actiday/framework/controller/favourite/favourite_control.dart';
+import 'package:actiday/framework/repository/favourite/favourite_data.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
+import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +23,8 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
   Banner1? banner1;
   Category? category;
   Welcome? welcome;
+
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -48,6 +53,7 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
           child: SvgPicture.asset(AppAssets.drawerLogo),
         ),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.location_on_outlined,
@@ -59,6 +65,7 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
             )
           ],
         ),
+        centerTitle: true,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -71,71 +78,181 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
       ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 44,
-                width: 335,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.grey, width: 0.5)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CommonText(
-                        title: "yoga, pilates, massage",
-                        fontSize: 12,
-                      )
-                    ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 44,
+                  width: 335,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey, width: 0.5)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        CommonText(
+                          title: "yoga, pilates, massage",
+                          fontSize: 12,
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 150,
-                width: double.maxFinite,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                          itemCount: welcome!.banner?.length,
-                          itemBuilder: (context, index) {
-                          final item = welcome!.banner;
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CommonContainer(
-                                height: 350,
-                                width: 330,
-                                borderRadius: 20,
-                                color: AppColors.clrf0f5f9,
-                                child:Image.network(
-                                  item?[index].image ?? "https://tse3.mm.bing.net/th/id/OIP.1My7WFQE3wdhA_gcvBlcZgHaEu?w=596&h=380&rs=1&pid=ImgDetMain&o=7&rm=3",
-                                  fit: BoxFit.fill,
-                                )
-                              ),
-                            );
-                          }
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 150,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                      itemCount: welcome!.banner?.length,
+                      itemBuilder: (context, index) {
+                      currentIndex = index;
+                      final item = welcome!.banner;
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CommonContainer(
+                            height: 350,
+                            width: 330,
+                            borderRadius: 20,
+                            color: AppColors.clrf0f5f9,
+                            child:Image.network(
+                              item?[index].image ?? "https://tse3.mm.bing.net/th/id/OIP.1My7WFQE3wdhA_gcvBlcZgHaEu?w=596&h=380&rs=1&pid=ImgDetMain&o=7&rm=3",
+                              fit: BoxFit.contain,
+                            )
+                          ),
+                        );
+                      }
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                    CommonText(
+                        title: "Active Lifestyle",
+                      fontSize: 16,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 200,
+                      child: CommonText(
+                        title: "Get active every day. Try new things. Find new classes",
+                        fontWeight: FontWeight.w300,
+                        fontSize: 12,
                       ),
                     ),
-
-
-                  ],
+                CommonText(
+                    title: "Categories",
                 ),
-              )
-            ],
+                    
+                  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: welcome?.categories?.length,
+                        padding: EdgeInsets.all(10),
+                        itemBuilder: (context, index) {
+                          final item = welcome?.categories![index];
+                          return Padding(
+                            padding: EdgeInsetsGeometry.only(right: 10),
+                            child: Stack(
+                              children: [
+                                CommonContainer(
+                                  height: 103,
+                                  width: 160,
+                                  child: Image.network(
+                                      item?.image ?? '',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 10,
+                                  left: 10,
+                                    child: SizedBox(
+                                      height: 50,
+                                      width: 80,
+                                      child: CommonText(
+                                          title: item?.categoryName ?? '',
+                                        color: AppColors.clrfafafa,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                    ),
+                  ),
+                CommonText(title: "Top Classes"),
+                   ListView.builder(
+                     shrinkWrap: true,
+                     physics: NeverScrollableScrollPhysics(),
+                     itemCount: welcome?.topClass?.length,
+                       itemBuilder: (context, index) {
+                       final item = welcome?.topClass?[index];
+                         return CommonCard(
+                           height: 270,
+                           imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",
+                           title: item?.title,
+                           subTitle: item?.subTitle,
+                           address: item?.address,
+                           rating: item?.rating,
+                           isFavourite: item?.isFavourite,
+                           onTap: (){
+                             setState(() {
+                               if(item?.isFavourite == false){
+                                 FavouriteControl.favList.add(
+                                     FavouriteData(
+                                       title: item?.title ?? 'NA',
+                                       imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",
+                                       address: item?.address ?? 'NA',
+                                       rating: item?.rating ?? 3,
+                                       isFavourite: true,
+                                       index: index,
+                                     )
+                                 );
+                                 item?.isFavourite = true;
+                                 print("added");
+                                 print(item?.isFavourite);
+                               }else {
+                                 FavouriteControl.favList.removeWhere(
+                                     (item)=> item.index == index,
+                                     // FavouriteData(
+                                     //   title: item?.title ?? 'NA',
+                                     //   imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",
+                                     //   address: item?.address ?? 'NA',
+                                     //   rating: item?.rating ?? 3,
+                                     //   isFavourite: false,
+                                     //   index: index,
+                                     // )
+                                 );
+                                 item?.isFavourite = false;
+                                 print("removed");
+                                 print(item?.isFavourite);
+                                 print(FavouriteControl.favList);
+                               }
+                               CommonCardState.isFavourite(item?.isFavourite);
+                             });
+                             print("clicked");
+
+                           },
+                         );
+                       }
+                   ),
+              ],
+            ),
           ),
         ),
     );
