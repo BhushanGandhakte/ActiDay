@@ -1,11 +1,19 @@
-import 'package:actiday/framework/controller/base/mobile/mobile_base_control.dart';
+import 'package:actiday/framework/controller/base/web/web_base_control.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 
-class WebBaseUi extends StatelessWidget {
+class WebBaseUi extends StatefulWidget {
   const WebBaseUi({super.key});
+
+  @override
+  State<WebBaseUi> createState() => _WebBaseUiState();
+}
+
+class _WebBaseUiState extends State<WebBaseUi> {
+
+  int? currentInd = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,6 @@ class WebBaseUi extends StatelessWidget {
                padding: const EdgeInsets.only(left: 80),
                child: Image.asset(
                    AppAssets.webLogo,
-
                ),
              ),
         centerTitle: true,
@@ -27,10 +34,17 @@ class WebBaseUi extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 20,
           children:
-            MobileBaseControl.bottomMenuData.map((data){
-
+            WebBaseControl.appBarMenuData.map((data){
                 return InkWell(
-                onTap: (){},
+
+                onTap: (){
+                  currentInd = data.index;
+                  changeBody(currentInd);
+                  print(currentInd);
+                  setState(() {
+
+                  });
+                },
                 child: CommonText(
                     title: data.iconName ?? 'NA',
                 ),
@@ -38,7 +52,6 @@ class WebBaseUi extends StatelessWidget {
             }).toList()
         ),
         actions: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 20,
@@ -53,32 +66,11 @@ class WebBaseUi extends StatelessWidget {
           ),
         ],
       ),
-
-      bottomNavigationBar: Container(
-        height: 100,
-        color: AppColors.clr000000,
-        child: Row(
-          children: [
-            CommonText(
-                title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
-              color: AppColors.clrfafafa,
-            ),
-            Spacer(),
-            CommonText(
-                title: "Privacy Policy  |",
-              color: AppColors.clrfafafa,
-            ),
-            CommonText(
-                title: "  terms and conditions  |",
-              color: AppColors.clrfafafa,
-            ),
-            CommonText(
-                title: "  returns and refund  ",
-              color: AppColors.clrfafafa,
-            ),
-          ],
-        ),
-      ),
+      body: changeBody(currentInd),
     );
+  }
+
+  Widget? changeBody(int? currentInd) {
+    return WebBaseControl.appBarMenuData[currentInd ?? 0].screenName;
   }
 }

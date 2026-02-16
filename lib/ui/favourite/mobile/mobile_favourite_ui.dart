@@ -1,5 +1,4 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
-import 'package:actiday/framework/repository/favourite/favourite_data.dart';
 import 'package:actiday/framework/repository/home/home_data.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';

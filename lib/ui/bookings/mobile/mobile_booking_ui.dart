@@ -17,18 +17,16 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.fromLTRB(14,4, 16, 0),
+          padding: const EdgeInsets.fromLTRB(14, 4, 16, 0),
           child: SvgPicture.asset(AppAssets.drawerLogo),
         ),
-        title: CommonText(
-          title: "My Bookings",
-          fontSize: 18,
-        ),
+        title: CommonText(title: "My Bookings", fontSize: 18),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          DefaultTabController(
+          Expanded(
+            child: DefaultTabController(
               length: 2,
               child: Column(
                 children: [
@@ -36,12 +34,16 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
                     indicatorColor: AppColors.clr808080,
                     tabs: [
                       Tab(text: "Upcoming"),
-                      Tab(text: "Past")
+                      Tab(text: "Past"),
                     ],
-                  )
+                  ),
+                  Expanded(
+                    child: TabBarView(children: [Text("data1"), Text("data2")]),
+                  ),
                 ],
-              )
-          )
+              ),
+            ),
+          ),
         ],
       ),
     );

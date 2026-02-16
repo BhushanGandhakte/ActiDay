@@ -1,6 +1,3 @@
-import 'package:actiday/framework/controller/favourite/favourite_control.dart';
-import 'package:actiday/framework/repository/favourite/favourite_data.dart';
-import 'package:actiday/framework/repository/home/home_data.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_container.dart';
@@ -13,6 +10,10 @@ class CommonCard extends StatefulWidget {
   final String? imgSrc;
   final String? title;
   final String? subTitle;
+  final String? id;
+  final List<String>? bookSubTitle;
+  final String? date;
+  final int? credit;
   final String? address;
   final int? rating;
   final double? height;
@@ -20,7 +21,7 @@ class CommonCard extends StatefulWidget {
   final bool? isFavourite;
   final Function()? onTap;
 
-  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap,});
+  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id,});
 
   @override
   State<CommonCard> createState() => CommonCardState();
@@ -33,7 +34,6 @@ class CommonCardState extends State<CommonCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: CommonContainer(
-        height: widget.height,
         width: widget.width,
         borderRadius: 15,
         child: Stack(
@@ -41,13 +41,16 @@ class CommonCardState extends State<CommonCard> {
             Column(
               children: [
                 SizedBox(
-                  height: 150,
+                  height: widget.height,
                   width: double.maxFinite,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
                     child: Image.network(
                       widget.imgSrc ?? 'NA',
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace){
+                        return Image.network('https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg');
+                      },
                     ),
                   ),
                 ),
@@ -91,9 +94,10 @@ class CommonCardState extends State<CommonCard> {
                         ],
                       ),
                       Spacer(),
+                      widget.credit == null ?
                       CommonText(
                         title: "${widget.rating}",
-                      ),
+                      ) : CommonText(title: "${widget.credit}"),
                       Icon(
                         Icons.star,
                         size: 20,

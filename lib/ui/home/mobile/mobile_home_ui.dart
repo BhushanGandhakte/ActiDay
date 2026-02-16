@@ -33,10 +33,11 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
   }
 
   Future<void> loadWelcomeJson() async {
-    final String response =
-    await rootBundle.loadString('assets/json/home.json');
+
+    final String response = await rootBundle.loadString('assets/json/home.json');
 
     final data = welcomeFromJson(response);
+
 
     setState(() {
       welcome = data;
