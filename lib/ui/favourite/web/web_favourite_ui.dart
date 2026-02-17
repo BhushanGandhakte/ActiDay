@@ -1,10 +1,9 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
-import 'package:actiday/framework/repository/home/home_data.dart';
-import 'package:actiday/ui/utils/theme/app_assets.dart';
+import 'package:actiday/ui/splash/splash.dart';
+import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class WebFavouriteUi extends StatefulWidget {
@@ -15,34 +14,11 @@ class WebFavouriteUi extends StatefulWidget {
 }
 
 class _WebFavouriteUiState extends State<WebFavouriteUi> {
-  Welcome? welcome;
-  Category? category;
-
-
   int currentIndex = 0;
 
   @override
-  void initState() {
-    super.initState();
-    loadWelcomeJson();
-  }
-
-  Future<void> loadWelcomeJson() async {
-
-    final String response =
-    await rootBundle.loadString('assets/json/home.json');
-
-    final data = welcomeFromJson(response);
-
-    setState(() {
-      welcome = data;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +67,7 @@ class _WebFavouriteUiState extends State<WebFavouriteUi> {
                   itemCount: FavouriteControl.favList.length,
                   itemBuilder: (context, index) {
                     final item = FavouriteControl.favList[index];
-                    final itemMain = welcome?.topClass?[item.index];
+                    final itemMain = SplashState.home?.topClass?[item.index];
                     return CommonCard(
                       height: 270,
                       imgSrc: item.imgSrc,
@@ -115,9 +91,25 @@ class _WebFavouriteUiState extends State<WebFavouriteUi> {
                   },
               ),
             ),
+            Container(
+              height: 100,
+              color: AppColors.clr000000,
+              child: Row(
+                children: [
+                  CommonText(
+                    title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
+                    color: AppColors.clrfafafa,
+                  ),
+                  Spacer(),
+                  CommonText(
+                    title: "Privacy Policy  |  terms and conditions  |  returns and refund  ",
+                    color: AppColors.clrfafafa,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

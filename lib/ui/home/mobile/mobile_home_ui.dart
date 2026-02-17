@@ -1,5 +1,6 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
 import 'package:actiday/framework/repository/favourite/favourite_data.dart';
+import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
@@ -20,30 +21,7 @@ class MobileHomeUi extends StatefulWidget {
 
 class _MobileHomeUiState extends State<MobileHomeUi> {
 
-  Banner1? banner1;
-  Category? category;
-  Welcome? welcome;
-
   int currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    loadWelcomeJson();
-  }
-
-  Future<void> loadWelcomeJson() async {
-
-    final String response = await rootBundle.loadString('assets/json/home.json');
-
-    final data = welcomeFromJson(response);
-
-
-    setState(() {
-      welcome = data;
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +94,10 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                      itemCount: welcome!.banner?.length,
+                      itemCount: SplashState.home!.banner?.length,
                       itemBuilder: (context, index) {
                       currentIndex = index;
-                      final item = welcome!.banner;
+                      final item = SplashState.home!.banner;
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CommonContainer(
@@ -161,10 +139,10 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                     child: ListView.builder(
                       shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: welcome?.categories?.length,
+                        itemCount: SplashState.home?.categories?.length,
                         padding: EdgeInsets.all(10),
                         itemBuilder: (context, index) {
-                          final item = welcome?.categories![index];
+                          final item = SplashState.home?.categories![index];
                           return Padding(
                             padding: EdgeInsetsGeometry.only(right: 10),
                             child: Stack(
@@ -200,9 +178,9 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                    ListView.builder(
                      shrinkWrap: true,
                      physics: NeverScrollableScrollPhysics(),
-                     itemCount: welcome?.topClass?.length,
+                     itemCount: SplashState.home?.topClass?.length,
                        itemBuilder: (context, index) {
-                       final item = welcome?.topClass?[index];
+                       final item = SplashState.home?.topClass?[index];
                          return CommonCard(
                            height: 270,
                            imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",

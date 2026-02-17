@@ -1,4 +1,5 @@
 import 'package:actiday/framework/controller/base/web/web_base_control.dart';
+import 'package:actiday/ui/home/web/web_home_ui.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
@@ -47,6 +48,7 @@ class _WebBaseUiState extends State<WebBaseUi> {
                 },
                 child: CommonText(
                     title: data.iconName ?? 'NA',
+                    fontWeight: data.index == currentInd ? FontWeight.bold : FontWeight.normal,
                 ),
                 );
             }).toList()
@@ -66,7 +68,7 @@ class _WebBaseUiState extends State<WebBaseUi> {
           ),
         ],
       ),
-      body: changeBody(currentInd),
+      body: changeBody(currentInd) ?? WebHomeUi(),
     );
   }
 

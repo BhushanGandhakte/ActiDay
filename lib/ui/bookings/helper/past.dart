@@ -1,4 +1,5 @@
 import 'package:actiday/framework/repository/bookings/bookings_data.dart';
+import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,45 +14,25 @@ class Past extends StatefulWidget {
 
 class _PastState extends State<Past> {
 
-  static Welcome? welcome;
-
-  int currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    loadWelcomeJson().then((_){
-      if(mounted) setState(() {});
-    });
-  }
-
-  Future<void> loadWelcomeJson() async {
-
-    final String response =
-    await rootBundle.loadString('assets/json/bookings.json');
-
-    final data = welcomeFromJson(response);
-
-    setState(() {
-      welcome = data;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3
+            crossAxisCount: 3,
+
         ),
-        itemCount: welcome?.past?.length,
+        itemCount: SplashState.bookings?.past?.length,
         itemBuilder: (context, index){
-          final item = welcome?.past?[index];
+          final item = SplashState.bookings?.past?[index];
           return CommonCard(
+            isPast: true,
             id: item?.id,
             imgSrc: item?.image,
             title: item?.title,
             bookSubTitle: item?.subTitle,
-            date: item?.date,
+            date: item?.date != null
+                ? DateTime.fromMillisecondsSinceEpoch(int.parse(item!.date!))
+                : null,
             credit: item?.credit,
           );
         }

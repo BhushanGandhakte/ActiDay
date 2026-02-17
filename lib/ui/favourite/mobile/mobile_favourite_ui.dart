@@ -1,5 +1,6 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
 import 'package:actiday/framework/repository/home/home_data.dart';
+import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
@@ -16,28 +17,8 @@ class MobileFavouriteUi extends StatefulWidget {
 
 class _MobileFavouriteUiState extends State<MobileFavouriteUi> {
 
-  Welcome? welcome;
-  Category? category;
-
 
   int currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    loadWelcomeJson();
-  }
-
-  Future<void> loadWelcomeJson() async {
-    final String response =
-    await rootBundle.loadString('assets/json/home.json');
-
-    final data = welcomeFromJson(response);
-
-    setState(() {
-      welcome = data;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +39,7 @@ class _MobileFavouriteUiState extends State<MobileFavouriteUi> {
         itemCount: FavouriteControl.favList.length,
           itemBuilder: (context, index) {
             final item = FavouriteControl.favList[index];
-            final itemMain = welcome?.topClass?[item.index];
+            final itemMain = SplashState.home?.topClass?[item.index];
             return CommonCard(
               height: 270,
               imgSrc: item.imgSrc,

@@ -4,20 +4,20 @@
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+BookingsData bookingsFromJson(String str) => BookingsData.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String bookingsDataToJson(BookingsData data) => json.encode(data.toJson());
 
-class Welcome {
+class BookingsData {
   List<Past>? upcoming;
   List<Past>? past;
 
-  Welcome({
+  BookingsData({
     this.upcoming,
     this.past,
   });
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory BookingsData.fromJson(Map<String, dynamic> json) => BookingsData(
     upcoming: json["upcoming"] == null ? [] : List<Past>.from(json["upcoming"]!.map((x) => Past.fromJson(x))),
     past: json["past"] == null ? [] : List<Past>.from(json["past"]!.map((x) => Past.fromJson(x))),
   );

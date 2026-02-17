@@ -4,6 +4,7 @@ import 'package:actiday/ui/utils/widgets/common_container.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class CommonCard extends StatefulWidget {
 
@@ -12,7 +13,7 @@ class CommonCard extends StatefulWidget {
   final String? subTitle;
   final String? id;
   final List<String>? bookSubTitle;
-  final String? date;
+  final DateTime? date;
   final int? credit;
   final String? address;
   final int? rating;
@@ -20,8 +21,10 @@ class CommonCard extends StatefulWidget {
   final double? width;
   final bool? isFavourite;
   final Function()? onTap;
+  final bool? isUpcoming;
+  final bool? isPast;
 
-  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id,});
+  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast,});
 
   @override
   State<CommonCard> createState() => CommonCardState();
@@ -34,7 +37,6 @@ class CommonCardState extends State<CommonCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: CommonContainer(
-        width: widget.width,
         borderRadius: 15,
         child: Stack(
           children: [
@@ -67,9 +69,13 @@ class CommonCardState extends State<CommonCard> {
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(
-                            width: 280,
-                            child: CommonText(
-                              title: widget.subTitle ?? 'NA',
+                            width: (widget.isUpcoming == true || widget.isPast == true) ? 256 : 340,
+                            child: (widget.isUpcoming == true || widget.isPast == true) ?  CommonText(
+                                title: widget.bookSubTitle?.join(" . ") ?? 'NA',
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12,
+                            ) : CommonText(
+                              title:  widget.subTitle ?? 'NA',
                               fontWeight: FontWeight.w400,
 
                             ),
@@ -78,7 +84,12 @@ class CommonCardState extends State<CommonCard> {
                             height: 10,
                           ),
                           Row(
-                            children: [
+                            children: (widget.isUpcoming == true || widget.isPast == true) ? [
+                              CommonText(title: DateFormat(
+                                'dd MMM yyyy, hh:mm a',
+                              ).format(widget.date!)
+                              ),
+                            ] : [
                               Icon(
                                 Icons.location_on_outlined,
                                 color: AppColors.clr808080,
@@ -93,19 +104,44 @@ class CommonCardState extends State<CommonCard> {
                           ),
                         ],
                       ),
-                      Spacer(),
-                      widget.credit == null ?
-                      CommonText(
-                        title: "${widget.rating}",
-                      ) : CommonText(title: "${widget.credit}"),
-                      Icon(
-                        Icons.star,
-                        size: 20,
-                        color: AppColors.clrf048c6,
+                      Column(
+                        children: [
+                          (widget.isUpcoming == true || widget.isPast ==  true) ? CommonText(
+                            title: "${widget.credit} Credit",
+                            fontWeight: FontWeight.bold,
+                          ) : Row(
+                            children: [
+                              CommonText(
+                                title: "${widget.rating}",
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 20,
+                                color: AppColors.clrf048c6,
+                              ),
+                            ],
+                          ) ,
+                          SizedBox(
+                            height: 30,
+                          ),
+                          if(widget.isUpcoming == true || widget.isPast == true)
+                            OutlinedButton(
+                              style: ButtonStyle(
+                                padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(8, 4, 8, 4))
+                              ),
+
+                              onPressed: (){
+                              },
+                              child: CommonText(
+                                  title: (widget.isUpcoming == true) ? "Booked" : "Completed",
+                                fontSize: 12,
+                              ),
+                            )
+                        ],
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             Positioned(
@@ -128,5 +164,6 @@ class CommonCardState extends State<CommonCard> {
     }
     return SvgPicture.asset(AppAssets.isFav);
   }
+
 
 }

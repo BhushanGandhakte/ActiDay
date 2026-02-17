@@ -4,20 +4,20 @@
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+HomeData homeFromJson(String str) => HomeData.fromJson(json.decode(str));
 
-class Welcome {
+class HomeData {
   List<Banner1>? banner;
   List<Category>? categories;
   List<TopClass>? topClass;
 
-  Welcome({
+  HomeData({
     this.banner,
     this.categories,
     this.topClass,
   });
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory HomeData.fromJson(Map<String, dynamic> json) => HomeData(
     banner: json["banner"] == null ? [] : List<Banner1>.from(json["banner"]!.map((x) => Banner1.fromJson(x))),
     categories: json["categories"] == null ? [] : List<Category>.from(json["categories"]!.map((x) => Category.fromJson(x))),
     topClass: json["top_class"] == null ? [] : List<TopClass>.from(json["top_class"]!.map((x) => TopClass.fromJson(x))),
