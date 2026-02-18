@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'package:actiday/ui/base/mobile/mobile_base_ui.dart';
+import 'package:actiday/ui/login/login.dart';
 import 'package:actiday/ui/splash/helper/common_splash_img.dart';
 import 'package:flutter/material.dart';
 
-import '../../base/base_ui.dart';
 
 class MobileSplash extends StatefulWidget {
   const MobileSplash({super.key});
@@ -22,7 +21,7 @@ class _MobileSplashState extends State<MobileSplash> {
         Duration(seconds: 3),
             ()=> Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => BaseUi())
+                MaterialPageRoute(builder: (context) => Login())
             )
     );
   }

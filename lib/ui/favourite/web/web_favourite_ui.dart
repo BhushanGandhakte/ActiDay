@@ -1,6 +1,5 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
 import 'package:actiday/ui/splash/splash.dart';
-import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,12 @@ class _WebFavouriteUiState extends State<WebFavouriteUi> {
             SizedBox(
               height: 20,
             ),
-            FavouriteControl.favList.isEmpty ? Center(child: CommonText(title: "No Favourite")) :
+            FavouriteControl.favList.isEmpty ? Center(
+                child: CommonText(
+                title: "No Favourite",
+                  fontSize: 20,
+                )
+            ) :
             Expanded(
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -89,23 +93,6 @@ class _WebFavouriteUiState extends State<WebFavouriteUi> {
                       },
                     );
                   },
-              ),
-            ),
-            Container(
-              height: 100,
-              color: AppColors.clr000000,
-              child: Row(
-                children: [
-                  CommonText(
-                    title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
-                    color: AppColors.clrfafafa,
-                  ),
-                  Spacer(),
-                  CommonText(
-                    title: "Privacy Policy  |  terms and conditions  |  returns and refund  ",
-                    color: AppColors.clrfafafa,
-                  ),
-                ],
               ),
             ),
           ],

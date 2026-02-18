@@ -1,9 +1,9 @@
 import 'package:actiday/framework/controller/base/web/web_base_control.dart';
 import 'package:actiday/ui/home/web/web_home_ui.dart';
-import 'package:actiday/ui/utils/theme/app_assets.dart';
-import 'package:actiday/ui/utils/theme/app_colors.dart';
-import 'package:actiday/ui/utils/widgets/common_text.dart';
+import 'package:actiday/ui/utils/widgets/common_app_bar.dart';
+import 'package:actiday/ui/utils/widgets/common_footer.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class WebBaseUi extends StatefulWidget {
   const WebBaseUi({super.key});
@@ -12,67 +12,44 @@ class WebBaseUi extends StatefulWidget {
   State<WebBaseUi> createState() => _WebBaseUiState();
 }
 
-class _WebBaseUiState extends State<WebBaseUi> {
+int? currentInd = 0;
 
-  int? currentInd = 0;
+Widget? changeBody(int? currentInd) {
+return WebBaseControl.appBarMenuData[currentInd ?? 0].screenName;
+}
+
+class _WebBaseUiState extends State<WebBaseUi> {
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.clrf0f5f9,
-         leadingWidth: 150,
-         leading:
-             Padding(
-               padding: const EdgeInsets.only(left: 80),
-               child: Image.asset(
-                   AppAssets.webLogo,
-               ),
-             ),
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 20,
-          children:
-            WebBaseControl.appBarMenuData.map((data){
-                return InkWell(
-
-                onTap: (){
-                  currentInd = data.index;
-                  changeBody(currentInd);
-                  print(currentInd);
-                  setState(() {
-
-                  });
-                },
-                child: CommonText(
-                    title: data.iconName ?? 'NA',
-                    fontWeight: data.index == currentInd ? FontWeight.bold : FontWeight.normal,
+      appBar: CommonAppBar(changeBody: (){
+        setState(() {}
+        );}),
+      body:  ResponsiveBuilder(
+        builder: (BuildContext context, SizingInformation sizingInformation) {
+          double screenWidth = sizingInformation.screenSize.width;
+          return  CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                      [
+                        changeBody(currentInd) ?? WebHomeUi(),
+                      ]
+                  ),
                 ),
-                );
-            }).toList()
-        ),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 20,
-            children: [
-              Icon(Icons.search),
-              Icon(Icons.notifications_none_rounded),
-              Image.asset(AppAssets.webProfile),
-              SizedBox(
-                width: 20,
-              )
-            ],
-          ),
-        ],
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: CommonFooter(screenWidth: screenWidth),
+                  ),
+                )
+              ]
+          );
+        },
       ),
-      body: changeBody(currentInd) ?? WebHomeUi(),
     );
-  }
-
-  Widget? changeBody(int? currentInd) {
-    return WebBaseControl.appBarMenuData[currentInd ?? 0].screenName;
   }
 }

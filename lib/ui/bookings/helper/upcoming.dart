@@ -1,10 +1,7 @@
-import 'package:actiday/framework/repository/bookings/bookings_data.dart';
+
 import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'helper.dart';
 
 class Upcoming extends StatefulWidget {
   const Upcoming({super.key});
@@ -27,6 +24,7 @@ class _UpcomingState extends State<Upcoming> {
       itemBuilder: (context, index) {
         final item = SplashState.bookings?.upcoming?[index];
         return CommonCard(
+          index: index,
           isUpcoming: true,
           id: item?.id,
           imgSrc: item?.image,

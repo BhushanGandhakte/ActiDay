@@ -73,25 +73,6 @@ class _WebBookingUiState extends State<WebBookingUi> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: screenWidth * 0.075,
-                    color: AppColors.clr000000,
-                    child: Row(
-                      children: [
-                        CommonText(
-                          title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
-                          fontSize: screenWidth * 0.0125,
-                          color: AppColors.clrfafafa,
-                        ),
-                        Spacer(),
-                        CommonText(
-                          title: "Privacy Policy  |  terms and conditions  |  returns and refund  ",
-                          fontSize: screenWidth * 0.0125,
-                          color: AppColors.clrfafafa,
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               );
             },

@@ -1,10 +1,10 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final bookingsData = bookingsDataFromJson(jsonString);
 
 import 'dart:convert';
 
-BookingsData bookingsFromJson(String str) => BookingsData.fromJson(json.decode(str));
+BookingsData bookingsDataFromJson(String str) => BookingsData.fromJson(json.decode(str));
 
 String bookingsDataToJson(BookingsData data) => json.encode(data.toJson());
 
@@ -35,6 +35,14 @@ class Past {
   List<String>? subTitle;
   String? date;
   int? credit;
+  String? address;
+  double? rating;
+  String? category;
+  String? time;
+  String? specialist;
+  String? timeSlot;
+  String? bookingId;
+  Status? status;
 
   Past({
     this.id,
@@ -43,6 +51,14 @@ class Past {
     this.subTitle,
     this.date,
     this.credit,
+    this.address,
+    this.rating,
+    this.category,
+    this.time,
+    this.specialist,
+    this.timeSlot,
+    this.bookingId,
+    this.status,
   });
 
   factory Past.fromJson(Map<String, dynamic> json) => Past(
@@ -52,6 +68,14 @@ class Past {
     subTitle: json["sub_title"] == null ? [] : List<String>.from(json["sub_title"]!.map((x) => x)),
     date: json["date"],
     credit: json["credit"],
+    address: json["address"],
+    rating: json["rating"]?.toDouble(),
+    category: json["category"],
+    time: json["time"],
+    specialist: json["specialist"],
+    timeSlot: json["time_slot"],
+    bookingId: json["booking_id"],
+    status: statusValues.map[json["status"]]!,
   );
 
   Map<String, dynamic> toJson() => {
@@ -61,5 +85,36 @@ class Past {
     "sub_title": subTitle == null ? [] : List<dynamic>.from(subTitle!.map((x) => x)),
     "date": date,
     "credit": credit,
+    "address": address,
+    "rating": rating,
+    "category": category,
+    "time": time,
+    "specialist": specialist,
+    "time_slot": timeSlot,
+    "booking_id": bookingId,
+    "status": statusValues.reverse[status],
   };
 }
+
+enum Status {
+  BOOK,
+  CONTINUE
+}
+
+final statusValues = EnumValues({
+  "book": Status.BOOK,
+  "continue": Status.CONTINUE
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
+}
+

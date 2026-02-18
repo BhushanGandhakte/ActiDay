@@ -5,6 +5,7 @@ import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_container.dart';
+import 'package:actiday/ui/utils/widgets/common_footer.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
 
 
   int currentIndex = 0;
+  double? screenW;
 
   PageController pageController = PageController();
 
@@ -33,6 +35,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
           ResponsiveBuilder(
                builder: (BuildContext context, SizingInformation sizingInformation) {
                  double screenWidth = sizingInformation.screenSize.width;
+                 screenW = screenWidth;
                  return Padding(
                    padding:  EdgeInsets.fromLTRB(screenWidth * 0.05, screenWidth * 0.01, screenWidth * 0.05, screenWidth * 0.01),
                    child: Column(
@@ -221,23 +224,6 @@ class _WebHomeUiState extends State<WebHomeUi> {
                  );
                },
              ),
-          Container(
-            height: 100,
-            color: AppColors.clr000000,
-            child: Row(
-              children: [
-                CommonText(
-                  title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
-                  color: AppColors.clrfafafa,
-                ),
-                Spacer(),
-                CommonText(
-                  title: "Privacy Policy  |  terms and conditions  |  returns and refund  ",
-                  color: AppColors.clrfafafa,
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

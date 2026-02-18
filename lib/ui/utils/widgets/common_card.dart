@@ -1,3 +1,4 @@
+import 'package:actiday/ui/bookings/web/web_booking_details.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_container.dart';
@@ -8,6 +9,7 @@ import 'package:intl/intl.dart';
 
 class CommonCard extends StatefulWidget {
 
+  final int index;
   final String? imgSrc;
   final String? title;
   final String? subTitle;
@@ -24,7 +26,7 @@ class CommonCard extends StatefulWidget {
   final bool? isUpcoming;
   final bool? isPast;
 
-  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast,});
+  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast, this.index = 0,});
 
   @override
   State<CommonCard> createState() => CommonCardState();
@@ -129,8 +131,9 @@ class CommonCardState extends State<CommonCard> {
                               style: ButtonStyle(
                                 padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(8, 4, 8, 4))
                               ),
-
                               onPressed: (){
+                                print(widget.index);
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> WebBookingDetails(index: widget.index, isUpcoming: widget.isUpcoming ?? true, isPast : widget.isPast ?? true)));
                               },
                               child: CommonText(
                                   title: (widget.isUpcoming == true) ? "Booked" : "Completed",

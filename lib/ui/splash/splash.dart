@@ -45,7 +45,7 @@ class SplashState extends State<Splash> {
     final String response =
     await rootBundle.loadString('assets/json/bookings.json');
 
-    final data = bookingsFromJson(response);
+    final data = bookingsDataFromJson(response);
 
     setState(() {
       bookings = data;

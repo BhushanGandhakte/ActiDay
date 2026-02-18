@@ -25,6 +25,7 @@ class _PastState extends State<Past> {
         itemBuilder: (context, index){
           final item = SplashState.bookings?.past?[index];
           return CommonCard(
+            index: index,
             isPast: true,
             id: item?.id,
             imgSrc: item?.image,

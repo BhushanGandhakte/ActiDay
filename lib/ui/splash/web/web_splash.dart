@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:actiday/ui/base/web/web_base_ui.dart';
+import 'package:actiday/ui/login/login.dart';
 import 'package:actiday/ui/splash/helper/common_splash_img.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class _WebSplashState extends State<WebSplash> {
         Duration(seconds: 3),
             ()=> Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context)=> BaseUi())
+                MaterialPageRoute(builder: (context)=> Login())
             )
     );
   }
