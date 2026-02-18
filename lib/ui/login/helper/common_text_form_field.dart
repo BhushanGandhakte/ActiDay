@@ -6,8 +6,10 @@ class CommonTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final String? labelText;
+  final double? height;
+  final double? width;
 
-  const CommonTextFormField({super.key, this.labelText, this.controller, this.validator});
+  const CommonTextFormField({super.key, this.labelText, this.controller, this.validator, this.height, this.width});
 
   @override
   State<CommonTextFormField> createState() => _CommonTextFormFieldState();
@@ -16,22 +18,26 @@ class CommonTextFormField extends StatefulWidget {
 class _CommonTextFormFieldState extends State<CommonTextFormField> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      validator: widget.validator,
-      decoration: InputDecoration(
-          labelText: widget.labelText,
-          labelStyle: TextStyle(
-              color: Colors.grey
-          ),
-          filled: true,
-          fillColor: Colors.white,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.clrf048c6, width: 1,),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color:  AppColors.clrf048c6, width: 1,),
-          )
+    return SizedBox(
+      height: widget.height,
+      width: widget.width,
+      child: TextFormField(
+        controller: widget.controller,
+        validator: widget.validator,
+        decoration: InputDecoration(
+            labelText: widget.labelText,
+            labelStyle: TextStyle(
+                color: Colors.grey
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.clrf048c6, width: 1,),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color:  AppColors.clrf048c6, width: 1,),
+            )
+        ),
       ),
     );
   }

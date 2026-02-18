@@ -7,9 +7,10 @@ class CommonButton extends StatefulWidget {
 
   final double? height;
   final double? width;
+  final String? title;
   final void Function()? submit;
 
-  const CommonButton({super.key, this.height, this.width, this.submit});
+  const CommonButton({super.key, this.height, this.width, this.submit, this.title});
 
   @override
   State<CommonButton> createState() => _CommonButtonState();
@@ -25,7 +26,12 @@ class _CommonButtonState extends State<CommonButton> {
         width: widget.width ?? 300,
         borderRadius: 20,
         color: AppColors.clrf048c6,
-        child: CommonText(title: "Login"),
+        child: Center(
+          child: CommonText(
+              title: widget.title ?? 'NA',
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
     );
   }
