@@ -119,7 +119,7 @@ class CommonCardState extends State<CommonCard> {
                               Icon(
                                 Icons.star,
                                 size: 20,
-                                color: AppColors.clrf048c6,
+                                color: AppColors.clrF048c6,
                               ),
                             ],
                           ) ,

@@ -1,3 +1,6 @@
+import 'package:actiday/ui/utils/theme/app_colors.dart';
+import 'package:actiday/ui/utils/widgets/common_container.dart';
+import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 
 class WebExploreUi extends StatefulWidget {
@@ -10,6 +13,14 @@ class WebExploreUi extends StatefulWidget {
 class _WebExploreUiState extends State<WebExploreUi> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CommonText(
+            title: "Comming Soon",
+          fontSize: 24,
+        ),
+      ],
+    );
   }
 }

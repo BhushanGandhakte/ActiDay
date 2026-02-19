@@ -102,7 +102,7 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                             height: 350,
                             width: 330,
                             borderRadius: 20,
-                            color: AppColors.clrf0f5f9,
+                            color: AppColors.clrF0F5F9,
                             child:Image.network(
                               item?[index].image ?? "https://tse3.mm.bing.net/th/id/OIP.1My7WFQE3wdhA_gcvBlcZgHaEu?w=596&h=380&rs=1&pid=ImgDetMain&o=7&rm=3",
                               fit: BoxFit.contain,
@@ -161,7 +161,7 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                                       width: 80,
                                       child: CommonText(
                                           title: item?.categoryName ?? '',
-                                        color: AppColors.clrfafafa,
+                                        color: AppColors.clrFaFaFa,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     )
@@ -223,7 +223,6 @@ class _MobileHomeUiState extends State<MobileHomeUi> {
                                CommonCardState.isFavourite(item?.isFavourite);
                              });
                              print("clicked");
-
                            },
                          );
                        }

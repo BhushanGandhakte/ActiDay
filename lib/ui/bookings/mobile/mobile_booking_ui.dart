@@ -1,8 +1,11 @@
+import 'package:actiday/ui/bookings/helper/mobile_upcoming.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../helper/mobile_past.dart';
+
 
 class MobileBookingUi extends StatefulWidget {
   const MobileBookingUi({super.key});
@@ -31,14 +34,23 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
               child: Column(
                 children: [
                   TabBar(
-                    indicatorColor: AppColors.clr808080,
+                    isScrollable: true,
+                    dividerColor: Colors.transparent,
+                    indicatorColor: Colors.transparent,
+                    labelStyle: TextStyle(
+                        foreground: Paint()..shader = AppColors.clrGradient.createShader(Rect.fromLTWH(0, 0, 200, 70))
+                    ),
+                    unselectedLabelStyle: TextStyle(
+                      color: AppColors.clr808080,
+                    ),
+                    unselectedLabelColor: AppColors.clr808080,
                     tabs: [
                       Tab(text: "Upcoming"),
                       Tab(text: "Past"),
                     ],
                   ),
                   Expanded(
-                    child: TabBarView(children: [Text("data1"), Text("data2")]),
+                    child: TabBarView(children: [MobileUpcoming(), MobilePast()]),
                   ),
                 ],
               ),

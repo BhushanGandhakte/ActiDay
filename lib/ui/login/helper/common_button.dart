@@ -25,7 +25,7 @@ class _CommonButtonState extends State<CommonButton> {
         height: widget.height ?? 100,
         width: widget.width ?? 300,
         borderRadius: 20,
-        color: AppColors.clrf048c6,
+        color: AppColors.clrF048c6,
         child: Center(
           child: CommonText(
               title: widget.title ?? 'NA',

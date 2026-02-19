@@ -18,10 +18,10 @@ class _MobileBaseClassState extends State<MobileBaseUi> {
     return Scaffold(
       body: MobileBaseControl.bottomMenuData[currentInd].screenName,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors.clrfafafa,
+        backgroundColor: AppColors.clrFaFaFa,
         items: MobileBaseControl.bottomMenuData.map((data) {
           return BottomNavigationBarItem(
-            backgroundColor: AppColors.clrfafafa,
+            backgroundColor: AppColors.clrFaFaFa,
             icon: data.icon ?? Icon(Icons.disabled_by_default),
             label: data.iconName,
           );

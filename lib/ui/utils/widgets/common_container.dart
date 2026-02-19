@@ -20,10 +20,10 @@ class _CommonContainerState extends State<CommonContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height ?? 150,
+      height: widget.height ?? 400,
       width: widget.width ?? 335,
       decoration: BoxDecoration(
-        color: widget.color ?? AppColors.clrfafafa,
+        color: widget.color ?? AppColors.clrFaFaFa,
         borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
       ),
       child: widget.child,

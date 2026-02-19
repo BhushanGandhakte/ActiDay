@@ -1,6 +1,5 @@
 import 'package:actiday/framework/controller/login/login_control.dart';
 import 'package:actiday/ui/base/base_ui.dart';
-import 'package:actiday/ui/home/home_ui.dart';
 import 'package:actiday/ui/login/helper/common_button.dart';
 import 'package:actiday/ui/login/helper/common_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -58,14 +57,19 @@ class _State extends State<WebLogin> {
   }
 
   void submit() {
-    if (LoginControl.formKey.currentState!.validate()) {
+    if (!LoginControl.formKey.currentState!.validate()) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Login Successful")));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => BaseUi()),
+      );
+    }else{
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Login Failed")));
     }
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => BaseUi()),
-    );
+
   }
 }

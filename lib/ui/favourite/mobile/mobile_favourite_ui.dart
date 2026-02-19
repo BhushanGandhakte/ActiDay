@@ -1,11 +1,9 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
-import 'package:actiday/framework/repository/home/home_data.dart';
 import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MobileFavouriteUi extends StatefulWidget {
@@ -34,7 +32,12 @@ class _MobileFavouriteUiState extends State<MobileFavouriteUi> {
          ),
          centerTitle: true,
        ),
-      body: ListView.builder(
+      body: FavouriteControl.favList.isEmpty ? Center(
+          child: CommonText(
+            title: "No Favourite",
+            fontSize: 20,
+          )
+      ) : ListView.builder(
         shrinkWrap: true,
         itemCount: FavouriteControl.favList.length,
           itemBuilder: (context, index) {

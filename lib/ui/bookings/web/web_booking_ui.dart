@@ -1,5 +1,5 @@
-import 'package:actiday/ui/bookings/helper/upcoming.dart';
-import 'package:actiday/ui/bookings/helper/past.dart';
+import 'package:actiday/ui/bookings/helper/web_upcoming.dart';
+import 'package:actiday/ui/bookings/helper/web_past.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
@@ -54,17 +54,40 @@ class _WebBookingUiState extends State<WebBookingUi> {
                             child: Column(
                               children: [
                                 TabBar(
-                                  indicatorColor: AppColors.clr808080,
+                                  isScrollable: true,
+                                  dividerColor: Colors.transparent,
+                                  indicatorColor: Colors.transparent,
+                                  labelStyle: TextStyle(
+                                    foreground: Paint()..shader = AppColors.clrGradient.createShader(Rect.fromLTWH(0, 0, 200, 70))
+                                  ),
+                                  unselectedLabelStyle: TextStyle(
+                                    color: AppColors.clr808080,
+                                  ),
+                                  unselectedLabelColor: AppColors.clr808080,
                                   tabs: [
-                                    CommonText(title: "Upcoming"),
-                                    CommonText(title: "Past"),
+                                    Text(
+                                        "Upcoming",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                        "Past",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(height: screenWidth * 0.02),
                                 SizedBox(
                                     height: screenWidth * 0.3,
                                     width: screenWidth * 0.8,
-                                    child: TabBarView(children: [Upcoming(), Past()])
+                                    child: TabBarView(
+                                        children: [WebUpcoming(), WebPast()]
+                                    )
                                 ),
                               ],
                             ),

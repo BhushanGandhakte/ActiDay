@@ -6,6 +6,7 @@ class LoginControl {
   static TextEditingController passwordController = TextEditingController();
 
   static String? emailValidator(String? value){
+    print(" = $value fghhtrhy");
     if(value == null || value.isEmpty){
       return "Enter an email";
     }

@@ -1,26 +1,19 @@
-import 'package:actiday/framework/repository/bookings/bookings_data.dart';
 import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'helper.dart';
 
-class Past extends StatefulWidget {
-  const Past({super.key});
 
+class MobilePast extends StatefulWidget {
+  const MobilePast({super.key});
   @override
-  State<Past> createState() => _PastState();
+  State<MobilePast> createState() => _MobilePastState();
 }
 
-class _PastState extends State<Past> {
+class _MobilePastState extends State<MobilePast> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-
-        ),
+    return ListView.builder(
         itemCount: SplashState.bookings?.past?.length,
         itemBuilder: (context, index){
           final item = SplashState.bookings?.past?[index];

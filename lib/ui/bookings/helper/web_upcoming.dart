@@ -3,14 +3,14 @@ import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
 
-class Upcoming extends StatefulWidget {
-  const Upcoming({super.key});
+class WebUpcoming extends StatefulWidget {
+  const WebUpcoming({super.key});
 
   @override
-  State<Upcoming> createState() => _UpcomingState();
+  State<WebUpcoming> createState() => _WebUpcomingState();
 }
 
-class _UpcomingState extends State<Upcoming> {
+class _WebUpcomingState extends State<WebUpcoming> {
 
   @override
   Widget build(BuildContext context) {

@@ -32,10 +32,10 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
             filled: true,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.clrf048c6, width: 1,),
+              borderSide: BorderSide(color: AppColors.clrF048c6, width: 1,),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:  AppColors.clrf048c6, width: 1,),
+              borderSide: BorderSide(color:  AppColors.clrF048c6, width: 1,),
             )
         ),
       ),

@@ -1,18 +1,16 @@
-import 'package:actiday/framework/repository/bookings/bookings_data.dart';
 import 'package:actiday/ui/bookings/mobile/mobile_booking_ui.dart';
-import 'package:actiday/ui/explore/web/web_explore_ui.dart';
+import 'package:actiday/ui/bookings/web/web_booking_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class Bookings extends StatefulWidget {
-  const Bookings({super.key});
+class BookingsUi extends StatefulWidget {
+  const BookingsUi({super.key});
 
   @override
-  State<Bookings> createState() => _BookingsState();
+  State<BookingsUi> createState() => _BookingsUiState();
 }
 
-class _BookingsState extends State<Bookings> {
+class _BookingsUiState extends State<BookingsUi> {
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class _BookingsState extends State<Bookings> {
           return MobileBookingUi();
         },
        desktop: (BuildContext context){
-          return WebExploreUi();
+          return WebBookingUi();
        },
     );
   }

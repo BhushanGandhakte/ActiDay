@@ -1,14 +1,11 @@
 import 'package:actiday/framework/controller/favourite/favourite_control.dart';
 import 'package:actiday/framework/repository/favourite/favourite_data.dart';
-import 'package:actiday/framework/repository/home/home_data.dart';
 import 'package:actiday/ui/splash/splash.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:actiday/ui/utils/widgets/common_container.dart';
-import 'package:actiday/ui/utils/widgets/common_footer.dart';
 import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -58,7 +55,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                      aspectRatio: 1600/242,
                                      child: CommonContainer(
                                          borderRadius: 20,
-                                         color: AppColors.clrf0f5f9,
+                                         color: AppColors.clrF0F5F9,
                                          child:ClipRRect(
                                            borderRadius: BorderRadiusGeometry.circular(20),
                                            child:
@@ -146,7 +143,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                            width: 80,
                                            child: CommonText(
                                              title: item?.categoryName ?? '',
-                                             color: AppColors.clrfafafa,
+                                             color: AppColors.clrFaFaFa,
                                              fontWeight: FontWeight.bold,
                                            ),
                                          )

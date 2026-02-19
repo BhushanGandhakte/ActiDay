@@ -18,13 +18,13 @@ class CommonFooter extends StatelessWidget {
           CommonText(
             title:  "  Copyright @ 2020-2022 Dreamplug Technologies Pvt. Ltd.",
             fontSize: (screenWidth ?? 1200) * 0.0125,
-            color: AppColors.clrfafafa,
+            color: AppColors.clrFaFaFa,
           ),
           Spacer(),
           CommonText(
             title: "Privacy Policy  |  terms and conditions  |  returns and refund  ",
             fontSize: (screenWidth ?? 1200) * 0.0125,
-            color: AppColors.clrfafafa,
+            color: AppColors.clrFaFaFa,
           ),
         ],
       ),
