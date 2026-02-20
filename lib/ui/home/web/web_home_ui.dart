@@ -141,7 +141,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                          left: screenWidth * 0.03,
                                          child: SizedBox(
                                            height: screenWidth * 0.05,
-                                           width: screenWidth * 0.05,
+                                           width: screenWidth * 0.06,
                                            child: CommonText(
                                              title: item?.categoryName ?? '',
                                              color: AppColors.clrFaFaFa,
@@ -169,7 +169,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                        ),
                        GridView.builder(
                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                             mainAxisExtent: screenWidth * 0.2,
+                             mainAxisExtent: screenWidth * 0.23,
                                crossAxisCount: 3,
                            ),
                            shrinkWrap: true,
@@ -178,6 +178,8 @@ class _WebHomeUiState extends State<WebHomeUi> {
                            itemBuilder: (context, index) {
                              final item = SplashState.home?.topClass?[index];
                              return CommonCard(
+                               isHome: true,
+                               height: screenWidth * 0.1,
                                screenWidth: screenWidth,
                                imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",
                                title: item?.title,
@@ -185,7 +187,6 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                address: item?.address,
                                rating: item?.rating,
                                isFavourite: item?.isFavourite,
-                               height: screenWidth * 0.1,
                                onTap: (){
                                  setState(() {
                                    if(item?.isFavourite == false){
@@ -219,7 +220,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                            }
                        ),
                        SizedBox(
-                         height: 50,
+                         height:  screenWidth * 0.04,
                        ),
                      ],
                    ),

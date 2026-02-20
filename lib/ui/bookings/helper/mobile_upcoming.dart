@@ -4,7 +4,11 @@ import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
 
 class MobileUpcoming extends StatefulWidget {
-  const MobileUpcoming({super.key});
+
+  final double screenWidth;
+  final double height;
+
+  const MobileUpcoming({super.key, required this.screenWidth, required this.height});
 
   @override
   State<MobileUpcoming> createState() => _MobileUpcomingState();
@@ -21,6 +25,8 @@ class _MobileUpcomingState extends State<MobileUpcoming> {
       itemBuilder: (context, index) {
         final item = SplashState.bookings?.upcoming?[index];
         return CommonCard(
+          screenWidth: widget.screenWidth,
+          height: widget.height,
           index: index,
           isUpcoming: true,
           id: item?.id,

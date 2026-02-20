@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 
 
 class MobilePast extends StatefulWidget {
-  const MobilePast({super.key});
+
+  final double screenWidth;
+  final double height;
+
+  const MobilePast({super.key, required this.screenWidth, required this.height});
   @override
   State<MobilePast> createState() => _MobilePastState();
 }
@@ -18,6 +22,8 @@ class _MobilePastState extends State<MobilePast> {
         itemBuilder: (context, index){
           final item = SplashState.bookings?.past?[index];
           return CommonCard(
+            screenWidth: widget.screenWidth,
+            height: widget.height,
             index: index,
             isPast: true,
             id: item?.id,

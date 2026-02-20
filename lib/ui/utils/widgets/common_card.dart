@@ -6,6 +6,7 @@ import 'package:actiday/ui/utils/widgets/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 
 class CommonCard extends StatefulWidget {
 
@@ -24,10 +25,11 @@ class CommonCard extends StatefulWidget {
   final double? width;
   final bool? isFavourite;
   final Function()? onTap;
-  final bool? isUpcoming;
-  final bool? isPast;
+  final bool isUpcoming;
+  final bool isPast;
+  final bool isHome;
 
-  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast, this.index = 0, this.screenWidth = 700,});
+  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast = false, this.index = 0, this.screenWidth = 700, this.isHome = false,});
 
   @override
   State<CommonCard> createState() => CommonCardState();
@@ -41,6 +43,7 @@ class CommonCardState extends State<CommonCard> {
       padding: EdgeInsets.all(widget.screenWidth * 0.01),
       child: CommonContainer(
         borderRadius: widget.screenWidth * 0.015,
+        height: widget.screenWidth * 0.25,
         child: Stack(
           children: [
             Column(
@@ -54,7 +57,9 @@ class CommonCardState extends State<CommonCard> {
                       widget.imgSrc ?? 'NA',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace){
-                        return Image.network('https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg');
+                        return Image.network(
+                            'https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg',
+                        );
                       },
                     ),
                   ),
@@ -72,11 +77,11 @@ class CommonCardState extends State<CommonCard> {
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(
-                            width: (widget.isUpcoming == true || widget.isPast == true) ? widget.screenWidth * 0.3 : widget.screenWidth * 0.235,
+                            width: (widget.isUpcoming == true || widget.isPast == true) ? widget.screenWidth * 0.2 : widget.screenWidth * 0.235,
                             child: (widget.isUpcoming == true || widget.isPast == true) ?  CommonText(
                                 title: widget.bookSubTitle?.join(" . ") ?? 'NA',
                               fontWeight: FontWeight.w300,
-                              fontSize: widget.screenWidth * 0.0175,
+                              fontSize: widget.screenWidth * 0.012,
                             ) : CommonText(
                               title:  widget.subTitle ?? 'NA',
                               fontWeight: FontWeight.w400,
@@ -88,20 +93,22 @@ class CommonCardState extends State<CommonCard> {
                           ),
                           Row(
                             children: (widget.isUpcoming == true || widget.isPast == true) ? [
-                              CommonText(title: DateFormat(
+                              CommonText(
+                                title: DateFormat(
                                 'dd MMM yyyy, hh:mm a',
                               ).format(widget.date!),
-                                fontSize: widget.screenWidth * 0.0115,
+                                fontSize: widget.screenWidth * 0.012,
                               ),
                             ] : [
                               Icon(
                                 Icons.location_on_outlined,
                                 color: AppColors.clr808080,
+                                size: widget.screenWidth * 0.0175,
                               ),
                               CommonText(
                                 title: widget.address ?? 'NA',
                                 fontWeight: FontWeight.w400,
-                                fontSize: 12,
+                                fontSize: widget.screenWidth * 0.011,
                                 color: AppColors.clr808080,
                               ),
                             ],
@@ -117,29 +124,31 @@ class CommonCardState extends State<CommonCard> {
                             children: [
                               CommonText(
                                 title: "${widget.rating}",
+                                fontSize: widget.screenWidth * 0.0145,
                               ),
                               Icon(
                                 Icons.star,
-                                size: 20,
+                                size: widget.screenWidth * 0.0145,
                                 color: AppColors.clrF048c6,
                               ),
                             ],
                           ) ,
                           SizedBox(
-                            height: 30,
+                            height: widget.screenWidth * 0.025,
                           ),
                           if(widget.isUpcoming == true || widget.isPast == true)
-                            OutlinedButton(
-                              style: ButtonStyle(
-                                padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(8, 4, 8, 4))
-                              ),
-                              onPressed: (){
+                            OutlineGradientButton(
+                              gradient: AppColors.clrGradient,
+                              padding: EdgeInsets.fromLTRB(widget.screenWidth * 0.015, widget.screenWidth * 0.005, widget.screenWidth * 0.015, widget.screenWidth * 0.005),
+                              radius: Radius.circular(20),
+                              onTap: (){
                                 print(widget.index);
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> WebBookingDetails(index: widget.index, isUpcoming: widget.isUpcoming ?? true, isPast : widget.isPast ?? true)));
                               },
+                              strokeWidth: 1,
                               child: CommonText(
                                   title: (widget.isUpcoming == true) ? "Booked" : "Completed",
-                                fontSize: 12,
+                                fontSize: widget.screenWidth * 0.0125,
                               ),
                             )
                         ],
@@ -149,7 +158,7 @@ class CommonCardState extends State<CommonCard> {
                 ),
               ],
             ),
-            if(widget.isPast == false && widget.isUpcoming == true)
+            if(widget.isHome == true)
             Positioned(
               top: 10,
                 right: 10,
