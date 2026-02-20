@@ -23,8 +23,15 @@ class _CommonContainerState extends State<CommonContainer> {
       height: widget.height ?? 400,
       width: widget.width ?? 335,
       decoration: BoxDecoration(
-        color: widget.color ?? AppColors.clrFaFaFa,
+        color: widget.color ?? AppColors.clrF8F8F8,
         borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 0.0001,
+            blurStyle: BlurStyle.normal,
+            offset: Offset.infinite
+          )
+        ]
       ),
       child: widget.child,
     );

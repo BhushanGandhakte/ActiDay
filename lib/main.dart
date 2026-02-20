@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Actiday',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.clrFaFaFa,
+        scaffoldBackgroundColor: AppColors.clrFfFfFf,
         appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.clrFaFaFa,
+          backgroundColor: AppColors.clrFfFfFf,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: AppColors.clrFaFaFa,
+          backgroundColor: AppColors.clrFfFfFf,
         )
       ),
       home: Splash(),

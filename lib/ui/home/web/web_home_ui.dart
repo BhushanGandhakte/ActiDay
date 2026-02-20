@@ -50,14 +50,14 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                  currentIndex = index;
                                  final item = SplashState.home!.banner;
                                  return Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(screenWidth * 0.005),
                                    child: AspectRatio(
                                      aspectRatio: 1600/242,
                                      child: CommonContainer(
-                                         borderRadius: 20,
+                                         borderRadius: screenWidth * 0.02,
                                          color: AppColors.clrF0F5F9,
                                          child:ClipRRect(
-                                           borderRadius: BorderRadiusGeometry.circular(20),
+                                           borderRadius: BorderRadius.circular(screenWidth * 0.01),
                                            child:
                                            // Image.network(
                                            //   item?[index].image ?? "https://tse3.mm.bing.net/th/id/OIP.1My7WFQE3wdhA_gcvBlcZgHaEu?w=596&h=380&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -76,7 +76,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                          ),
                        ),
                        SizedBox(
-                         height: 12,
+                         height: screenWidth * 0.01,
                        ),
                        Center(
                          child: SmoothPageIndicator(
@@ -84,21 +84,22 @@ class _WebHomeUiState extends State<WebHomeUi> {
                              count: SplashState.home!.banner!.length,
                            effect: ExpandingDotsEffect(
                              activeDotColor: AppColors.clr000000,
-                             dotHeight: 6,
-                             expansionFactor: 7
+                             dotHeight: screenWidth * 0.004,
+                             expansionFactor: screenWidth * 0.005,
                            ),
                          ),
                        ),
                        SizedBox(
-                         height: 12,
+                         height: screenWidth * 0.015,
                        ),
                            CommonText(
                               title:  "Royal Peace Spa",
-                             fontSize: 24,
+                             fontSize: screenWidth * 0.016,
                              fontWeight: FontWeight.bold,
                            ),
                        CommonText(
                            title: "Relax and rejuvenate with the traditional Thai dry therapy Relax and rejuvenate with the",
+                         fontSize: screenWidth * 0.0115,
                          fontWeight: FontWeight.w400,
                        ),
                        SizedBox(
@@ -106,7 +107,7 @@ class _WebHomeUiState extends State<WebHomeUi> {
                        ),
                        CommonText(
                          title: "Categories",
-                         fontSize: 24,
+                         fontSize: screenWidth * 0.016,
                          fontWeight: FontWeight.bold,
                        ),
                        SizedBox(
@@ -118,11 +119,11 @@ class _WebHomeUiState extends State<WebHomeUi> {
                              shrinkWrap: true,
                              scrollDirection: Axis.horizontal,
                              itemCount: SplashState.home?.categories?.length,
-                             padding: EdgeInsets.all(10),
+                             padding: EdgeInsets.all(screenWidth * 0.003),
                              itemBuilder: (context, index) {
                                final item = SplashState.home?.categories![index];
                                return Padding(
-                                 padding: EdgeInsetsGeometry.only(right: 10),
+                                 padding: EdgeInsets.only(right: screenWidth * 0.01),
                                  child: Stack(
                                    children: [
                                      CommonContainer(
@@ -136,15 +137,16 @@ class _WebHomeUiState extends State<WebHomeUi> {
                                        ),
                                      ),
                                      Positioned(
-                                         top: 10,
-                                         left: 10,
+                                         top: screenWidth * 0.03,
+                                         left: screenWidth * 0.03,
                                          child: SizedBox(
-                                           height: 50,
-                                           width: 80,
+                                           height: screenWidth * 0.05,
+                                           width: screenWidth * 0.05,
                                            child: CommonText(
                                              title: item?.categoryName ?? '',
                                              color: AppColors.clrFaFaFa,
                                              fontWeight: FontWeight.bold,
+                                             fontSize: screenWidth * 0.015,
                                            ),
                                          )
                                      )
@@ -154,9 +156,12 @@ class _WebHomeUiState extends State<WebHomeUi> {
                              }
                          ),
                        ),
+                       SizedBox(
+                         height: screenWidth * 0.015,
+                       ),
                        CommonText(
                            title: "Top Classes",
-                         fontSize: 24,
+                         fontSize: screenWidth * 0.016,
                          fontWeight: FontWeight.bold,
                        ),
                        SizedBox(
@@ -164,23 +169,23 @@ class _WebHomeUiState extends State<WebHomeUi> {
                        ),
                        GridView.builder(
                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                             mainAxisExtent: 300,
+                             mainAxisExtent: screenWidth * 0.2,
                                crossAxisCount: 3,
                            ),
                            shrinkWrap: true,
-
                            physics: NeverScrollableScrollPhysics(),
                            itemCount: SplashState.home?.topClass?.length,
                            itemBuilder: (context, index) {
                              final item = SplashState.home?.topClass?[index];
                              return CommonCard(
+                               screenWidth: screenWidth,
                                imgSrc: "https://images.pexels.com/photos/4853705/pexels-photo-4853705.jpeg",
                                title: item?.title,
                                subTitle: item?.subTitle,
                                address: item?.address,
                                rating: item?.rating,
                                isFavourite: item?.isFavourite,
-                               height: 150,
+                               height: screenWidth * 0.1,
                                onTap: (){
                                  setState(() {
                                    if(item?.isFavourite == false){

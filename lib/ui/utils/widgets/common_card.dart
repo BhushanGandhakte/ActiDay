@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 
 class CommonCard extends StatefulWidget {
 
+  final double screenWidth;
   final int index;
   final String? imgSrc;
   final String? title;
@@ -26,7 +27,7 @@ class CommonCard extends StatefulWidget {
   final bool? isUpcoming;
   final bool? isPast;
 
-  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast, this.index = 0,});
+  const CommonCard({super.key, this.imgSrc, this.title, this.subTitle, this.address, this.rating, this.height, this.width, this.isFavourite, this.onTap, this.bookSubTitle, this.date, this.credit, this.id, this.isUpcoming = false, this.isPast, this.index = 0, this.screenWidth = 700,});
 
   @override
   State<CommonCard> createState() => CommonCardState();
@@ -37,9 +38,9 @@ class CommonCardState extends State<CommonCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(widget.screenWidth * 0.01),
       child: CommonContainer(
-        borderRadius: 15,
+        borderRadius: widget.screenWidth * 0.015,
         child: Stack(
           children: [
             Column(
@@ -48,7 +49,7 @@ class CommonCardState extends State<CommonCard> {
                   height: widget.height,
                   width: double.maxFinite,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(widget.screenWidth * 0.015), topLeft: Radius.circular(widget.screenWidth * 0.015)),
                     child: Image.network(
                       widget.imgSrc ?? 'NA',
                       fit: BoxFit.cover,
@@ -59,7 +60,7 @@ class CommonCardState extends State<CommonCard> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(widget.screenWidth * 0.01),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,25 +72,26 @@ class CommonCardState extends State<CommonCard> {
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(
-                            width: (widget.isUpcoming == true || widget.isPast == true) ? 256 : 340,
+                            width: (widget.isUpcoming == true || widget.isPast == true) ? widget.screenWidth * 0.3 : widget.screenWidth * 0.235,
                             child: (widget.isUpcoming == true || widget.isPast == true) ?  CommonText(
                                 title: widget.bookSubTitle?.join(" . ") ?? 'NA',
                               fontWeight: FontWeight.w300,
-                              fontSize: 12,
+                              fontSize: widget.screenWidth * 0.0175,
                             ) : CommonText(
                               title:  widget.subTitle ?? 'NA',
                               fontWeight: FontWeight.w400,
-
+                              fontSize: widget.screenWidth * 0.0115,
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: widget.screenWidth * 0.011,
                           ),
                           Row(
                             children: (widget.isUpcoming == true || widget.isPast == true) ? [
                               CommonText(title: DateFormat(
                                 'dd MMM yyyy, hh:mm a',
-                              ).format(widget.date!)
+                              ).format(widget.date!),
+                                fontSize: widget.screenWidth * 0.0115,
                               ),
                             ] : [
                               Icon(
@@ -147,6 +149,7 @@ class CommonCardState extends State<CommonCard> {
                 ),
               ],
             ),
+            if(widget.isPast == false && widget.isUpcoming == true)
             Positioned(
               top: 10,
                 right: 10,
