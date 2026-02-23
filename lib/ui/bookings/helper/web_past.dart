@@ -6,7 +6,11 @@ import 'package:flutter/services.dart';
 import 'helper.dart';
 
 class WebPast extends StatefulWidget {
-  const WebPast({super.key});
+
+  final double screenWidth;
+
+  const WebPast({super.key, required this.screenWidth});
+
   @override
   State<WebPast> createState() => _WebPastState();
 }
@@ -24,6 +28,7 @@ class _WebPastState extends State<WebPast> {
         itemBuilder: (context, index){
           final item = SplashState.bookings?.past?[index];
           return CommonCard(
+            screenWidth: widget.screenWidth,
             index: index,
             isPast: true,
             id: item?.id,

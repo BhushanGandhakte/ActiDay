@@ -4,7 +4,9 @@ import 'package:actiday/ui/utils/widgets/common_card.dart';
 import 'package:flutter/material.dart';
 
 class WebUpcoming extends StatefulWidget {
-  const WebUpcoming({super.key});
+
+  final double screenWidth;
+  const WebUpcoming({super.key, required this.screenWidth});
 
   @override
   State<WebUpcoming> createState() => _WebUpcomingState();
@@ -24,6 +26,7 @@ class _WebUpcomingState extends State<WebUpcoming> {
       itemBuilder: (context, index) {
         final item = SplashState.bookings?.upcoming?[index];
         return CommonCard(
+          screenWidth: widget.screenWidth,
           index: index,
           isUpcoming: true,
           id: item?.id,

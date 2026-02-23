@@ -86,7 +86,10 @@ class _WebBookingUiState extends State<WebBookingUi> {
                                     height: screenWidth * 0.3,
                                     width: screenWidth * 0.8,
                                     child: TabBarView(
-                                        children: [WebUpcoming(), WebPast()]
+                                        children: [
+                                          WebUpcoming(screenWidth: screenWidth * 0.8),
+                                          WebPast(screenWidth: screenWidth * 0.8)
+                                        ]
                                     )
                                 ),
                               ],

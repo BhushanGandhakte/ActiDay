@@ -48,6 +48,7 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
                           dividerColor: Colors.transparent,
                           indicatorColor: AppColors.clrF048c6,
                           tabAlignment: TabAlignment.center,
+                          labelPadding: EdgeInsets.only(right: 50, left: 50),
                           labelStyle: TextStyle(
                               foreground: Paint()..shader = AppColors.clrGradient.createShader(Rect.fromLTWH(0, 0, 200, 70))
                           ),
@@ -68,7 +69,7 @@ class _MobileBookingUiState extends State<MobileBookingUi> {
                             height: screenWidth * 0.4,
                           ),
                           MobilePast(
-                            screenWidth: screenWidth * 3,
+                            screenWidth: screenWidth * 2.9,
                             height: screenWidth * 0.4,
                           )
                         ]

@@ -1,4 +1,5 @@
-import 'package:actiday/ui/bookings/web/web_booking_details.dart';
+import 'package:actiday/ui/booking_detail/booking_details.dart';
+import 'package:actiday/ui/booking_detail/web/web_booking_details.dart';
 import 'package:actiday/ui/utils/theme/app_assets.dart';
 import 'package:actiday/ui/utils/theme/app_colors.dart';
 import 'package:actiday/ui/utils/widgets/common_container.dart';
@@ -143,7 +144,7 @@ class CommonCardState extends State<CommonCard> {
                               radius: Radius.circular(20),
                               onTap: (){
                                 print(widget.index);
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> WebBookingDetails(index: widget.index, isUpcoming: widget.isUpcoming ?? true, isPast : widget.isPast ?? true)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> BookingDetails(index: widget.index, isUpcoming: widget.isUpcoming, isPast : widget.isPast)));
                               },
                               strokeWidth: 1,
                               child: CommonText(
